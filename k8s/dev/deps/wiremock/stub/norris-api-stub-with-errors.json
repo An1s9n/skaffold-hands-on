@@ -1,0 +1,89 @@
+{
+  "mappings": [
+    {
+      "scenarioName": "Norris api round robin",
+      "requiredScenarioState": "Started",
+      "newScenarioState": "Ok with empty response",
+      "request": {
+        "url": "/jokes/random",
+        "method": "GET"
+      },
+      "response": {
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "jsonBody": {
+          "categories": [],
+          "created_at": "2020-01-05 13:42:23.484083",
+          "icon_url": "https://assets.chucknorris.host/img/avatar/chuck-norris.png",
+          "id": "J2WwAOseT3-kixug8vxEAg",
+          "updated_at": "2020-01-05 13:42:23.484083",
+          "url": "https://api.chucknorris.io/jokes/J2WwAOseT3-kixug8vxEAg",
+          "value": "Chuck Norris once ate a rubix cube. He pooped it out solved"
+        }
+      }
+    },
+    {
+      "scenarioName": "Norris api round robin",
+      "requiredScenarioState": "Ok with empty response",
+      "newScenarioState": "Ok with malformed response",
+      "request": {
+        "url": "/jokes/random",
+        "method": "GET"
+      },
+      "response": {
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "body": ""
+      }
+    },
+    {
+      "scenarioName": "Norris api round robin",
+      "requiredScenarioState": "Ok with malformed response",
+      "newScenarioState": "Not found",
+      "request": {
+        "url": "/jokes/random",
+        "method": "GET"
+      },
+      "response": {
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "jsonBody": {
+          "categories": [],
+          "created_at": "2020-01-05 13:42:23.484083",
+          "icon_url": "https://assets.chucknorris.host/img/avatar/chuck-norris.png",
+          "id": "J2WwAOseT3-kixug8vxEAg",
+          "updated_at": "2020-01-05 13:42:23.484083",
+          "url": "https://api.chucknorris.io/jokes/J2WwAOseT3-kixug8vxEAg",
+          "malformed_field_name": "Chuck Norris once ate a rubix cube. He pooped it out solved"
+        }
+      }
+    },
+    {
+      "scenarioName": "Norris api round robin",
+      "requiredScenarioState": "Not found",
+      "newScenarioState": "Service unavailable",
+      "request": {
+        "url": "/jokes/random",
+        "method": "GET"
+      },
+      "response": {
+        "status": 404
+      }
+    },
+    {
+      "scenarioName": "Norris api round robin",
+      "requiredScenarioState": "Service unavailable",
+      "newScenarioState": "Started",
+      "request": {
+        "url": "/jokes/random",
+        "method": "GET"
+      },
+      "response": {
+        "status": 503
+      }
+    }
+  ]
+}

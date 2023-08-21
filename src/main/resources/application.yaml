@@ -1,0 +1,29 @@
+datasource:
+# host: <required>
+  port: 5432
+# db: <required>
+# user: <required>
+# password: <required>
+
+norris-api:
+  base-url: "https://api.chucknorris.io"
+  connect-timeout-millis: 1500
+  read-timeout-millis: 1500
+
+# Framework configs
+server:
+  port: 8081
+  error:
+    include-message: "always"
+management:
+  server:
+    port: 9091
+spring:
+  main:
+    banner-mode: "off"
+  datasource:
+    url: "jdbc:postgresql://${datasource.host}:${datasource.port}/${datasource.db}"
+    username: "${datasource.user}"
+    password: "${datasource.password}"
+  jackson:
+    default-property-inclusion: "non_null"

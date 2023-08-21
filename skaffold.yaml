@@ -1,0 +1,28 @@
+apiVersion: "skaffold/v4beta6"
+kind: "Config"
+metadata:
+  name: "skaffold-hands-on"
+build:
+  artifacts:
+    - image: "ru.an1s9n/skaffold-hands-on"
+      custom:
+        buildCommand: "eval $(minikube -p minikube docker-env) && ./mvnw clean compile jib:dockerBuild -Dimage=$IMAGE"
+        dependencies:
+          paths:
+            - "src/**"
+            - "pom.xml"
+manifests:
+  kustomize:
+    paths:
+      - "k8s/dev"
+deploy:
+  tolerateFailuresUntilDeadline: true
+profiles:
+  - name: "depsOnly"
+    patches:
+      - op: "remove"
+        path: "/build"
+    manifests:
+      kustomize:
+        paths:
+          - "k8s/dev/deps"

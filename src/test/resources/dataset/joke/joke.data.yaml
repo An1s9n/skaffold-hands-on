@@ -1,0 +1,7 @@
+joke:
+  - id: 101
+    text: "foo"
+  - id: 102
+    text: "bar"
+  - id: 103
+    text: "buz"

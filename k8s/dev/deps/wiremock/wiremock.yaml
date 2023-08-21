@@ -1,0 +1,59 @@
+apiVersion: "v1"
+kind: "Service"
+metadata:
+  name: "wiremock-dev"
+spec:
+  ports:
+    - name: "http"
+      port: 18081
+      targetPort: "http"
+  type: "ClusterIP"
+  selector:
+    app.kubernetes.io/name: "wiremock-dev"
+---
+apiVersion: "apps/v1"
+kind: "Deployment"
+metadata:
+  name: "wiremock-dev"
+  labels:
+    app.kubernetes.io/name: "wiremock-dev"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: "wiremock-dev"
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: "wiremock-dev"
+    spec:
+      containers:
+        - name: "wiremock-dev"
+          image: "wiremock/wiremock:2.35.0"
+          ports:
+            - name: "http"
+              containerPort: 8080
+              protocol: "TCP"
+          resources:
+            requests:
+              cpu: "500m"
+              memory: "256M"
+            limits:
+              cpu: "1"
+              memory: "500M"
+          volumeMounts:
+            - name: "mappings"
+              mountPath: "/home/wiremock/mappings"
+            - name: "files"
+              mountPath: "/home/wiremock/__files"
+          args:
+            - "--record-mappings"
+      volumes:
+        - name: "mappings"
+          configMap:
+            name: "wiremock-dev-mappings"
+            optional: true
+        - name: "files"
+          configMap:
+            name: "wiremock-dev-files"
+            optional: true

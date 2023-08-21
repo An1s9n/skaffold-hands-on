@@ -1,0 +1,5 @@
+### get random joke from db
+GET http://localhost:8081/api/v1/joke/random?source=db
+
+### get random joke from Norris api
+GET http://localhost:8081/api/v1/joke/random?source=norris-api

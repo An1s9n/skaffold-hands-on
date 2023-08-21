@@ -1,0 +1,10 @@
+datasource:
+  host: "localhost"
+  db: "dev-db"
+  user: "dev-user"
+  password: "dev-password"
+
+norris-api:
+  base-url: "http://localhost:18081"
+  connect-timeout-millis: 5000
+  read-timeout-millis: 5000

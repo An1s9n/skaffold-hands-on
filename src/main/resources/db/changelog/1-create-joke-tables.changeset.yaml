@@ -1,0 +1,51 @@
+databaseChangeLog:
+  - changeSet:
+      id: "1-create-joke-tables"
+      author: "An1s9n"
+      changes:
+        - createTable:
+            tableName: "joke"
+            columns:
+              - column:
+                  name: "id"
+                  type: "bigserial"
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: "text"
+                  type: "text"
+                  constraints:
+                    nullable: false
+        - createTable:
+            tableName: "joke_request_log"
+            columns:
+              - column:
+                  name: "id"
+                  type: "bigserial"
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: "created"
+                  type: "timestamptz"
+                  defaultValueComputed: "now()"
+                  constraints:
+                    nullable: false
+              - column:
+                  name: "source"
+                  type: "varchar(20)"
+                  constraints:
+                    nullable: false
+              - column:
+                  name: "status"
+                  type: "varchar(20)"
+                  constraints:
+                    nullable: false
+              - column:
+                  name: "joke_id"
+                  type: "varchar(100)"
+              - column:
+                  name: "joke_text"
+                  type: "text"
+              - column:
+                  name: "error_message"
+                  type: "varchar(1000)"

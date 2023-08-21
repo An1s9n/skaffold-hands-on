@@ -1,0 +1,9 @@
+datasource:
+  host: "${embedded-postgres.host}"
+  port: "${embedded-postgres.port}"
+  db: "${embedded-postgres.db}"
+  user: "${embedded-postgres.user}"
+  password: "${embedded-postgres.password}"
+
+norris-api:
+  base-url: "${wiremock.base-url}"
